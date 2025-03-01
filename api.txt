@@ -119,7 +119,7 @@ api cart:
     method: get
     body: {
         "customerId": 1,
-        "cartItemId": 7,
+        "cartItemId": 7
     }
     response: {
         "id": 7,
@@ -140,7 +140,7 @@ api cart:
     body: {
         "customerId": 1,
         "cartItemId": 7,
-        "quantity": 2,
+        "quantity": 2
     }
     response: {
         "message": "Item removed from cart"
