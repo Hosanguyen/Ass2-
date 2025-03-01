@@ -1,0 +1,147 @@
+api product:
+    endpoint: http://127.0.0.1:1110/api/product/list/
+    method: get
+    body:
+    response: {
+        "status": "Success",
+        "status_code": 200,
+        "data": [
+            {
+                "id": 1,
+                "product_name": "check",
+                "product_category": "test.",
+                "availability": "availability.",
+                "product_price": 12.099,
+                "product_description": "This field is required."
+            },
+            {
+                "id": 2,
+                "product_name": "product2",
+                "product_category": "book",
+                "availability": "availability",
+                "product_price": 12.099,
+                "product_description": "tes product no 2"
+            }
+        ]
+    }
+
+
+    endpoint: http://127.0.0.1:1110/api/product/add/
+    method: post
+    body: {
+            "product_name": "product2",
+            "product_category": "book",
+            "availability": "availability",
+            "product_price": 12.099,
+            "product_description": "tes product no 2"
+        }
+    response: {
+        "message": "Book added successfully",
+        "book": {
+            "id": 2,
+            "product_name": "product2",
+            "product_category": "book",
+            "availability": "availability",
+            "product_price": 12.099,
+            "product_description": "tes product no 2"
+        }
+    }
+
+
+    endpoint: http://127.0.0.1:1110/api/product/get/
+    method: get
+    body: {
+        "productId": 1
+    }
+    response: {
+        "status": "Success",
+        "status_code": 200,
+        "data": {
+            "id": 1,
+            "product_name": "check",
+            "product_category": "test.",
+            "availability": "availability.",
+            "product_price": 12.099,
+            "product_description": "This field is required."
+        }
+    }
+
+
+    endpoint: http://127.0.0.1:1110/api/product/get/
+    method: delete
+    body: {
+        "productId": 2
+    }
+    response: {
+        "message": "Product has been deleted"
+    }
+
+
+api cart:
+    endpoint: http://127.0.0.1:1111/api/cart/list/
+    method: get
+    body: {
+        "customerId": 1
+    }
+    response: {
+        "cart_items": [
+            {
+                "id": 7,
+                "product": {
+                    "id": 1,
+                    "product_name": "check",
+                    "product_category": "test.",
+                    "availability": "availability.",
+                    "product_price": 12.099,
+                    "product_description": "This field is required."
+                },
+                "quantity": 4,
+                "total_price": 48.4
+            }
+        ],
+        "total_price": 48.4
+    }
+
+
+    endpoint: http://127.0.0.1:1111/api/cart/add/
+    method: post
+    body: {
+        "customerId": 1,
+        "productId": 1,
+        "quantity": 4
+    }
+    response: {
+        "message": "Added to cart"
+    }
+
+    
+    endpoint: http://127.0.0.1:1111/api/cart/get/
+    method: get
+    body: {
+        "customerId": 1,
+        "cartItemId": 7,
+    }
+    response: {
+        "id": 7,
+        "product": {
+            "id": 1,
+            "product_name": "check",
+            "product_category": "test.",
+            "availability": "availability.",
+            "product_price": 12.099,
+            "product_description": "This field is required."
+        },
+        "quantity": 4,
+        "total_price": 48.4
+    }
+
+    endpoint: http://127.0.0.1:1111/api/cart/delete/
+    method: delete
+    body: {
+        "customerId": 1,
+        "cartItemId": 7,
+        "quantity": 2,
+    }
+    response: {
+        "message": "Item removed from cart"
+    }
