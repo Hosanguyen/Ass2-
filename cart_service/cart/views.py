@@ -115,7 +115,7 @@ class RemoveFromCartAPIView(APIView):
     def delete(self, request):
         customerId = request.data.get('customerId')
         cartItemId = request.data.get('cartItemId')
-        quantity = request.data.get('quantity')
+        quantity = request.data.get('quantity') 
         if not customerId or not cartItemId:
             return Response({"error": "customerId and cartItemId are required"}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -129,6 +129,9 @@ class RemoveFromCartAPIView(APIView):
         if not cart_item:
             return Response({"error": "Cart item not found"}, status=status.HTTP_404_NOT_FOUND)
 
+        if not quantity:
+            quantity = cart_item.quantity
+            
         cart_item.quantity -= quantity
         if(cart_item.quantity <=0):
             cart_item.delete()
