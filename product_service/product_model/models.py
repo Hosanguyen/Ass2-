@@ -1,3 +1,5 @@
+#product_service/product_model/models.py
+
 from django.db import models
 
 # Create your models here.

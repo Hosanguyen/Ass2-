@@ -80,12 +80,16 @@ WSGI_APPLICATION = 'customer_service.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'customer_service',  # Tên cơ sở dữ liệu MySQL
-        'USER': 'root',  # Tài khoản MySQL
-        'PASSWORD': '12345',  # Mật khẩu MySQL
-        'HOST': 'localhost',  # Hoặc IP máy chủ MySQL
-        'PORT': '3306',  # Cổng mặc định của MySQL
+        'ENGINE': 'mssql',  # Dùng engine cho SQL Server
+        'NAME': 'SADPROJECT2MS',
+        'USER': 'sa',
+        'PASSWORD': '123',
+        'HOST': 'HOSA\\SERVER',
+        'PORT': '1433',  # Cổng mặc định là 1433
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server', 
+            'Trusted_Connection': 'yes',
+        },
     }
 }
 
