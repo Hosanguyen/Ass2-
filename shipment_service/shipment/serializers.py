@@ -1,3 +1,4 @@
+# shipment_service/shipment/serializers.py
 from rest_framework import serializers
 from .models import (
     ShippingProvider, ShippingRate, Shipment, ShipmentEvent,
@@ -19,7 +20,6 @@ class ShippingRateSerializer(serializers.ModelSerializer):
                   'is_active', 'created_at', 'updated_at']
 
 class AddressSerializer(serializers.ModelSerializer):
-    full_address = serializers.CharField(read_only=True, source='full_address')
     
     class Meta:
         model = Address
@@ -31,7 +31,6 @@ class RecipientSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'phone', 'email', 'created_at', 'updated_at']
 
 class PackageSerializer(serializers.ModelSerializer):
-    volume = serializers.DecimalField(max_digits=12, decimal_places=2, read_only=True, source='volume')
     
     class Meta:
         model = Package

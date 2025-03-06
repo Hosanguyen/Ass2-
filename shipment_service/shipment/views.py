@@ -1,3 +1,4 @@
+# shipment_service/shipment/views.py
 import datetime
 import requests
 from django.conf import settings
@@ -75,6 +76,22 @@ class ShipmentViewSet(viewsets.ModelViewSet):
         
         return queryset
     
+    @action(detail=True, methods=['put'])
+    def update_payment_status(self, request, pk=None):
+        shipment = self.get_object()
+        new_payment_status = request.data.get('payment_status')
+        
+        if not new_payment_status:
+            return Response(
+                {'error': 'Payment status is required.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        shipment.payment_status = new_payment_status
+        shipment.save()
+        
+        return Response(ShipmentSerializer(shipment).data)
+    
     @action(detail=True, methods=['post'])
     def update_status(self, request, pk=None):
         shipment = self.get_object()
@@ -116,22 +133,38 @@ class ShipmentViewSet(viewsets.ModelViewSet):
         )
         
         # Thông báo cho order service về sự thay đổi trạng thái
-        try:
-            requests.post(
-                f"{settings.ORDER_SERVICE_URL}/orders/{shipment.order_id}/shipping-update/",
-                json={
-                    'shipment_id': str(shipment.id),
-                    'tracking_number': shipment.tracking_number,
-                    'status': new_status,
-                    'description': description,
-                    'occurred_at': occurred_at.isoformat()
-                }
-            )
-        except Exception as e:
-            # Log lỗi nhưng không làm ảnh hưởng đến response
-            print(f"Error notifying order service: {e}")
+        # try:
+        #     requests.post(
+        #         f"{settings.ORDER_SERVICE_URL}/orders/{shipment.order_id}/shipping-update/",
+        #         json={
+        #             'shipment_id': str(shipment.id),
+        #             'tracking_number': shipment.tracking_number,
+        #             'status': new_status,
+        #             'description': description,
+        #             'occurred_at': occurred_at.isoformat()
+        #         }
+        #     )
+        # except Exception as e:
+        #     # Log lỗi nhưng không làm ảnh hưởng đến response
+        #     print(f"Error notifying order service: {e}")
         
         return Response(ShipmentEventSerializer(event).data)
+    
+    # @action(detail=True, methods=['put'])
+    # def update_status_payment(self, request, pk=None):
+    #     shipment = self.get_object()
+    #     new_payment_status = request.data.get('payment_status')
+        
+    #     if not new_payment_status:
+    #         return Response(
+    #             {'error': 'Payment status is required.'},
+    #             status=status.HTTP_400_BAD_REQUEST
+    #         )
+        
+    #     shipment.payment_status = new_payment_status
+    #     shipment.save()
+        
+    #     return Response(ShipmentSerializer(shipment).data)
     
     @action(detail=True, methods=['get'])
     def events(self, request, pk=None):
