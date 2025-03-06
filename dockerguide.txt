@@ -1,0 +1,62 @@
+/my-django-project
+│── Dockerfile
+│── requirements.txt
+│── manage.py
+│── /myapp
+│── /static
+│── /templates
+│── /config (nếu có)
+│── .env (nếu có)
+│── docker-compose.yml (nếu dùng)
+
+1. Create file requirements (Recommended)
+asgiref==3.8.1
+certifi==2025.1.31
+charset-normalizer==3.4.1
+dataclasses==0.6
+Django==5.1.6
+django-cors-headers==3.11.0
+django-filter==25.1
+djangorestframework==3.14.0
+djangorestframework-simplejwt==4.8.0
+djongo==1.2.31
+drf-yasg==1.21.9
+idna==3.10
+inflection==0.5.1
+mysqlclient==2.2.7
+packaging==24.2
+PyJWT==2.10.1
+pymongo==3.11.4
+pytz==2025.1
+PyYAML==6.0.2
+requests==2.32.3
+sqlparse==0.5.3
+tzdata==2025.1
+uritemplate==4.1.1
+urllib3==2.3.0
+
+2. Dockerfile
+# Use an official Python runtime as a parent image
+FROM python:3.10
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the requirements file and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the Django project files to the container
+COPY . .
+
+# Expose the port that the Django app runs on
+EXPOSE 8000
+
+# Run migrations and start the Django development server
+CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+
+
+3. Build & Run Docker
+docker build -t your_app_name .
+docker run -p from_port_in_docker_container:to_your_computer docker_image 
+Ex: docker run -p 6789:6789 shipment_service
