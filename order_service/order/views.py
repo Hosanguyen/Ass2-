@@ -21,10 +21,10 @@ class GetAllOrderAPIView(APIView):
                 product_id = order_item.product
                 total_items += order_item.quantity
                 try:
-                    res = requests.get(f'http://localhost:1110/api/product/',json={'productId': product_id})
+                    res = requests.get(f'http://localhost:1110/api/product/get/',json={'productId': product_id})
                     if res.status_code == 200:
                         product = res.json().get('data')
-                        total_price += product.get('price') * order_item.quantity
+                        total_price += product.get('product_price') * order_item.quantity
                         items_data.append({
                             'id':order_item.id,
                             'product': product,
@@ -81,6 +81,53 @@ class DeleteOrderAPIView(APIView):
         except:
             return Response({'message':'Xóa đơn hàng thất bại'}, status=400)
         return Response({'message':'Xóa đơn hàng thành công'}, status=200)
+
+class GetDetailOrderAPIView(APIView):
+    def get(self, request,id):
+        try:
+            order = Order.objects.get(id=id)
+            order_items = OrderItem.objects.filter(order=order)
+            total_price = 0
+            total_items = 0
+            items_data = []
+            for order_item in order_items:
+                product_id = order_item.product
+                total_items += order_item.quantity
+                try:
+                    res = requests.get(f'http://localhost:1110/api/product/get/',json={'productId': product_id})
+                    if res.status_code == 200:
+                        product = res.json().get('data')
+                        total_price += product.get('product_price') * order_item.quantity
+                        items_data.append({
+                            'id':order_item.id,
+                            'product': product,
+                            'quantity':order_item.quantity
+                        })
+                except requests.exceptions.RequestException as e:
+                    return Response({'error': 'Không tìm thấy sản phẩm'}, status=500)
+            return Response({
+                'id': order.id,
+                'user_id': order.user_id,
+                'total_items': total_items,
+                'total_price': total_price,
+                'approved': order.approved,
+                'items': items_data
+            }, status=200)
+        except:
+            return Response({'message':'Không tìm thấy đơn hàng'}, status=400)
+
+
+class UpdateOrderAPIView(APIView):
+    def put(self, request):
+        try:
+            id = request.data.get('id')
+            approved = request.data.get('approved')
+            order = Order.objects.get(id=id)
+            order.approved = approved
+            order.save()
+        except:
+            return Response({'message':'Duyệt đơn hàng thất bại'}, status=400)
+        return Response({'message':'Duyệt đơn hàng thành công'}, status=200)
                 
 
             

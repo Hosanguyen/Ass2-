@@ -1,3 +1,4 @@
+# shipment_service/shipment/models.py
 from django.db import models
 import uuid
 
@@ -96,6 +97,7 @@ class Shipment(models.Model):
     provider = models.ForeignKey(ShippingProvider, on_delete=models.PROTECT, related_name='shipments')
     shipping_rate = models.ForeignKey(ShippingRate, on_delete=models.PROTECT, related_name='shipments')
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    payment_status = models.CharField(max_length=20, default='Chưa thanh toán')
     
     # Liên kết với các model đã tách
     recipient = models.ForeignKey(Recipient, on_delete=models.PROTECT, related_name='shipments')

@@ -9,6 +9,7 @@
 # urlpatterns = [
 #     path('', include(router.urls)),
 # ]
+# payment_service/payment/urls.py
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import PaymentMethodViewSet, PaymentViewSet

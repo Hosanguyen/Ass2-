@@ -17,6 +17,10 @@ def main():
         ) from exc
     execute_from_command_line(sys.argv)
 
+# run on port 6789
+from django.core.management.commands.runserver import Command as runserver
+runserver.default_port = "6789"
+
 
 if __name__ == '__main__':
     main()
