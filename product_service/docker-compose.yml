@@ -5,12 +5,13 @@ services:
     build: .
     ports:
       - "1110:1110"
-    environment:
+    environment: 
       - DEBUG=1
-      - MONGO_URI=mongodb://mongo:27017/sadproject2mircoserver
+      - MONGO_URI=mongodb://mongo:27017/
     depends_on:
       - mongo
-
+    networks:
+      - app-network
   mongo:
     image: mongo:latest
     container_name: mongo
@@ -18,3 +19,9 @@ services:
       - "27017:27017"
     volumes:
       - ./data:/data/db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
