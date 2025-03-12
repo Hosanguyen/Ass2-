@@ -4,9 +4,6 @@ from rest_framework.response import Response
 from .models import Order, OrderItem
 from .serializers import OrderItemSerializer, OrderSerializer
 import requests
-import os
-import dotenv
-dotenv.load_dotenv()
 
 class GetAllOrderAPIView(APIView):
     def get(self, request):
@@ -21,7 +18,7 @@ class GetAllOrderAPIView(APIView):
                 product_id = order_item.product
                 total_items += order_item.quantity
                 try:
-                    res = requests.get(f'http://localhost:1110/api/product/get/',json={'productId': product_id})
+                    res = requests.get(f'http://127.0.0.1:1110/api/product/get/',json={'productId': product_id})
                     if res.status_code == 200:
                         product = res.json().get('data')
                         total_price += product.get('product_price') * order_item.quantity
@@ -94,7 +91,7 @@ class GetDetailOrderAPIView(APIView):
                 product_id = order_item.product
                 total_items += order_item.quantity
                 try:
-                    res = requests.get(f'http://localhost:1110/api/product/get/',json={'productId': product_id})
+                    res = requests.get(f'http://127.0.0.1:1110/api/product/get/',json={'productId': product_id})
                     if res.status_code == 200:
                         product = res.json().get('data')
                         total_price += product.get('product_price') * order_item.quantity

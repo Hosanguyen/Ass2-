@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  customer_service:
+    build: .
+    command: bash -c "sleep 15 && python manage.py migrate customer && python manage.py runserver 0.0.0.0:8200"
+    container_name: customer_service
+    restart: always
+    ports:
+      - "8200:8200"
+    depends_on:
+      - mysql_db
+
+  mysql_db:
+    image: mysql:8.0
+    container_name: mysql_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: customer
+      MYSQL_USER: user1
+      MYSQL_PASSWORD: 12345
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:

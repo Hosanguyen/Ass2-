@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  order_service:
+    build: .
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8100"
+    ports:
+      - "8100:8100"
+    volumes:
+      - .:/app
+      - ./db.sqlite3:/app/db.sqlite3
