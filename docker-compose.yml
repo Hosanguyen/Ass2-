@@ -34,37 +34,54 @@ services:
     networks:
       - e_commerce
 
-  # customer:
-  #   build: ./customer_service
-  #   container_name: customer_service
-  #   ports:
-  #     - "8200:8200"
-  #   environment:
-  #     - cart_api=http://cart:1111/api/cart/
-  #     - customer_api=http://customer:8200/customer/
-  #     - product_api=http://product:1110/api/product/
-  #     - order_api=http://order:8100/order/
-  #     - shipment_api=http://shipment:6789/shipment_service
-  #     - payment_api=http://payment:6800/payment_api/
-  #   networks:
-  #     - e_commerce
+  customer:
+    build: ./customer_service
+    container_name: customer_service
+    ports:
+      - "8200:8200"
+    environment:
+      - cart_api=http://cart:1111/api/cart/
+      - customer_api=http://customer:8200/customer/
+      - product_api=http://product:1110/api/product/
+      - order_api=http://order:8100/order/
+      - shipment_api=http://shipment:6789/shipment_service
+      - payment_api=http://payment:6800/payment_api/
+    depends_on:
+      - mysql_db
+    networks:
+      - e_commerce
 
-  # order:
-  #   build: ./order_service
-  #   container_name: order_service
-  #   ports:
-  #     - "8100:8100"
-  #   environment:
-  #     - cart_api=http://cart:1111/api/cart/
-  #     - customer_api=http://customer:8200/customer/
-  #     - product_api=http://product:1110/api/product/
-  #     - order_api=http://order:8100/order/
-  #     - shipment_api=http://shipment:6789/shipment_service
-  #     - payment_api=http://payment:6800/payment_api/
-  #   depends_on:
-  #     - cart
-  #   networks:
-  #     - e_commerce
+  mysql_db:
+    image: mysql:8.0
+    container_name: mysql_container
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: customer
+      MYSQL_USER: user1
+      MYSQL_PASSWORD: 12345
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - e_commerce
+
+  order:
+    build: ./order_service
+    container_name: order_service
+    ports:
+      - "8100:8100"
+    environment:
+      - cart_api=http://cart:1111/api/cart/
+      - customer_api=http://customer:8200/customer/
+      - product_api=http://product:1110/api/product/
+      - order_api=http://order:8100/order/
+      - shipment_api=http://shipment:6789/shipment_service
+      - payment_api=http://payment:6800/payment_api/
+    depends_on:
+      - product
+    networks:
+      - e_commerce
 
   payment:
     build: ./payment_service
@@ -109,3 +126,6 @@ services:
 networks:
   e_commerce:
     driver: bridge
+
+volumes:
+  mysql_data:

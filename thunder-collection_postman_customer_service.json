@@ -1,0 +1,328 @@
+{
+    "info": {
+        "_postman_id": "2cce1200-1840-4f88-bd3d-e4ac4aad37ba",
+        "name": "customer_service",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "get_customers",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://127.0.0.1:8200/customer/customers/",
+                    "path": [
+                        "customer",
+                        "customers"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "8200"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"fullname\": {\n    \"first_name\": \"ahjsaj\",\n    \"last_name\": \"asjks\"\n  },\n  \"address\": {\n    \"street\": \"ajshdjk\",\n    \"city\": \"sjkkja\",\n    \"state\": \"asklks\"\n  },\n  \"email\": \"user3@gmail.com\",\n  \"phone\": \"9270239\",\n  \"username\": \"user3\",\n  \"password\": \"12345\",\n  \"customer_type\": \"registered\"\n}"
+                }
+            }
+        },
+        {
+            "name": "get_detail_user",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://127.0.0.1:8200/customer/get/1/",
+                    "path": [
+                        "customer",
+                        "get",
+                        "1"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "8200"
+                }
+            }
+        },
+        {
+            "name": "register_user",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://127.0.0.1:8200/customer/register/",
+                    "path": [
+                        "customer",
+                        "register"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "8200"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"fullname\": {\n    \"first_name\": \"ahjsaj\",\n    \"last_name\": \"asjks\"\n  },\n  \"address\": {\n    \"street\": \"ajshdjk\",\n    \"city\": \"sjkkja\",\n    \"state\": \"asklks\"\n  },\n  \"email\": \"user4@gmail.com\",\n  \"phone\": \"9270239\",\n  \"username\": \"user4\",\n  \"password\": \"12345\",\n  \"customer_type\": \"registered\"\n}"
+                }
+            }
+        },
+        {
+            "name": "update_user",
+            "request": {
+                "method": "PUT",
+                "url": {
+                    "raw": "http://127.0.0.1:8000/customer/update/1/",
+                    "path": [
+                        "customer",
+                        "update",
+                        "1"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "8000"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"username\":\"user123\"\n}"
+                }
+            }
+        },
+        {
+            "name": "delete_user",
+            "request": {
+                "method": "DELETE",
+                "url": {
+                    "raw": "http://127.0.0.1:8000/customer/delete/4/",
+                    "path": [
+                        "customer",
+                        "delete",
+                        "4"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "8000"
+                }
+            }
+        },
+        {
+            "name": "login_user",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://127.0.0.1:8000/customer/login/",
+                    "path": [
+                        "customer",
+                        "login"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "8000"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"username\":\"user2\",\n  \"password\":\"12345\"\n}"
+                }
+            }
+        },
+        {
+            "name": "add_product",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://127.0.0.1:1110/api/product/add/",
+                    "path": [
+                        "api",
+                        "product",
+                        "add"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "1110"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"product_name\": \"product3\",\n  \"product_category\": \"book\",\n  \"availability\": \"availability\",\n  \"product_price\": 12.099,\n  \"product_description\": \"tes product no 2\"\n}"
+                }
+            }
+        },
+        {
+            "name": "add_order",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://127.0.0.1:8100/order/add/",
+                    "path": [
+                        "order",
+                        "add"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "8100"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n    \"user_id\": 1,\n    \"order_items\": [\n        {\n            \"product\": 1,\n            \"quantity\": 2\n        },\n        {\n            \"product\": 2,\n            \"quantity\": 1\n        }\n    ]\n}"
+                }
+            }
+        },
+        {
+            "name": "delete_order",
+            "request": {
+                "method": "DELETE",
+                "url": {
+                    "raw": "http://127.0.0.1:8100/order/delete/2/",
+                    "path": [
+                        "order",
+                        "delete",
+                        "2"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "8100"
+                }
+            }
+        },
+        {
+            "name": "get_all_order",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://127.0.0.1:8100/order/all/",
+                    "path": [
+                        "order",
+                        "all"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "8100"
+                }
+            }
+        },
+        {
+            "name": "get_product",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://172.11.109.153:6789/shipment_service/addresses/",
+                    "path": [
+                        "shipment_service",
+                        "addresses"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "172",
+                        "11",
+                        "109",
+                        "153"
+                    ],
+                    "port": "6789"
+                }
+            }
+        },
+        {
+            "name": "get_detail_order",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://127.0.0.1:8100/order/detail/5",
+                    "path": [
+                        "order",
+                        "detail",
+                        "5"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "8100"
+                }
+            }
+        },
+        {
+            "name": "update_order",
+            "request": {
+                "method": "GET"
+            }
+        }
+    ]
+}
