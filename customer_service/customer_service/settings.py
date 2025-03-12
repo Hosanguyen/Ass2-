@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-^t@oo(zn0#in@y*eflaeo0khregt+gnv%6d@#@p6h#7le)^889
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -80,16 +80,12 @@ WSGI_APPLICATION = 'customer_service.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'mssql',  # Dùng engine cho SQL Server
-        'NAME': 'SADPROJECT2MS',
-        'USER': 'sa',
-        'PASSWORD': '123',
-        'HOST': 'HOSA\\SERVER',
-        'PORT': '1433',  # Cổng mặc định là 1433
-        'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server', 
-            'Trusted_Connection': 'yes',
-        },
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'customer',  # Tên cơ sở dữ liệu MySQL
+        'USER': 'user1',  # Tài khoản MySQL
+        'PASSWORD': '12345',  # Mật khẩu MySQL
+        'HOST': 'mysql_container',  # Hoặc IP máy chủ MySQL
+        'PORT': '3306',  # Cổng mặc định của MySQL
     }
 }
 
