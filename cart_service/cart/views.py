@@ -10,6 +10,8 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
+product_api = os.getenv('product_api')
+
 class AddToCartAPIView(APIView):
     def post(self, request):
         customerId = request.data.get('customerId')
@@ -52,7 +54,7 @@ class CartDetailAPIView(APIView):
 
         for item in cart_items:
             try:
-                response = requests.get(f"{os.getenv('product_api_url')}product/get/", json={'productId': str(item.product)})
+                response = requests.get(f"{product_api}get/", json={'productId': str(item.product)})
                 
                 if response.status_code != 200:
                     continue  
@@ -96,7 +98,7 @@ class GetOneCartItemAPIView(APIView):
             return Response({"error": "Cart item not found"}, status=status.HTTP_404_NOT_FOUND)
         
         try:
-            response = requests.get(f"{os.getenv('product_api_url')}product/get/", json={'productId': str(cart_item.product)})
+            response = requests.get(f"{product_api}get/", json={'productId': str(cart_item.product)})
             if response.status_code != 200:
                 return Response({"error": "Failed to fetch product details"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             
