@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -84,13 +85,15 @@ WSGI_APPLICATION = 'product_service.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+HOST_DATABASE = os.getenv('MONGO_URI', 'mongodb://localhost:27017/')
+
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'project2microservice',
         'ENFORCE_SCHEMA': False,
         'CLIENT':{
-            'host': 'mongodb://localhost:27017/',
+            'host': HOST_DATABASE,
         }
     }
 }

@@ -7,6 +7,7 @@ from rest_framework import viewsets, status, filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.views import APIView
 from .models import (
     ShippingProvider, ShippingRate, Shipment, ShipmentEvent,
     Address, Recipient, Package
@@ -76,22 +77,6 @@ class ShipmentViewSet(viewsets.ModelViewSet):
         
         return queryset
     
-    @action(detail=True, methods=['put'])
-    def update_payment_status(self, request, pk=None):
-        shipment = self.get_object()
-        new_payment_status = request.data.get('payment_status')
-        
-        if not new_payment_status:
-            return Response(
-                {'error': 'Payment status is required.'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        
-        shipment.payment_status = new_payment_status
-        shipment.save()
-        
-        return Response(ShipmentSerializer(shipment).data)
-    
     @action(detail=True, methods=['post'])
     def update_status(self, request, pk=None):
         shipment = self.get_object()
@@ -150,21 +135,6 @@ class ShipmentViewSet(viewsets.ModelViewSet):
         
         return Response(ShipmentEventSerializer(event).data)
     
-    # @action(detail=True, methods=['put'])
-    # def update_status_payment(self, request, pk=None):
-    #     shipment = self.get_object()
-    #     new_payment_status = request.data.get('payment_status')
-        
-    #     if not new_payment_status:
-    #         return Response(
-    #             {'error': 'Payment status is required.'},
-    #             status=status.HTTP_400_BAD_REQUEST
-    #         )
-        
-    #     shipment.payment_status = new_payment_status
-    #     shipment.save()
-        
-    #     return Response(ShipmentSerializer(shipment).data)
     
     @action(detail=True, methods=['get'])
     def events(self, request, pk=None):
@@ -218,3 +188,13 @@ class ShipmentViewSet(viewsets.ModelViewSet):
             })
         
         return Response(results)
+
+class Update_Payment_Status(APIView):
+    def post(self, request):
+        order_id = request.data.get('order_id')
+        payment_status = request.data.get('payment_status')
+        shipment = Shipment.objects.get(order_id=order_id)
+        shipment.payment_status = payment_status
+        shipment.save()
+        serializer = ShipmentSerializer(shipment)
+        return Response(serializer.data)

@@ -60,7 +60,7 @@ class ShipmentSerializer(serializers.ModelSerializer):
             'shipping_address', 'shipping_address_details',
             'package', 'package_details',
             'shipping_cost', 'estimated_delivery_date', 'shipped_at', 'delivered_at',
-            'created_at', 'updated_at', 'notes', 'events'
+            'created_at', 'updated_at', 'notes', 'events','payment_status'
         ]
 
 class ShipmentCreateSerializer(serializers.ModelSerializer):
@@ -76,7 +76,7 @@ class ShipmentCreateSerializer(serializers.ModelSerializer):
             'recipient', 'recipient_data',
             'shipping_address', 'shipping_address_data',
             'package', 'package_data',
-            'shipping_cost', 'estimated_delivery_date', 'notes'
+            'shipping_cost', 'estimated_delivery_date', 'notes', 'payment_status'
         ]
     
     def create(self, validated_data):
@@ -106,3 +106,4 @@ class ShipmentCreateSerializer(serializers.ModelSerializer):
         
         # Tạo shipment
         return super().create(validated_data)
+    
