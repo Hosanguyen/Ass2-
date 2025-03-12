@@ -11,7 +11,7 @@ services:
       - customer_api=http://customer:8200/customer/
       - product_api=http://product:1110/api/product/
       - order_api=http://order:8100/order/
-      - shipment_api=http://shipment:6789/shipment_service/
+      - shipment_api=http://shipment:6789/shipment_service
       - payment_api=http://payment:6800/payment_api/
     depends_on:
       - mongo
@@ -27,7 +27,7 @@ services:
       - customer_api=http://customer:8200/customer/
       - product_api=http://product:1110/api/product/
       - order_api=http://order:8100/order/
-      - shipment_api=http://shipment:6789/shipment_service/
+      - shipment_api=http://shipment:6789/shipment_service
       - payment_api=http://payment:6800/payment_api/
     depends_on:
       - product
@@ -44,7 +44,7 @@ services:
   #     - customer_api=http://customer:8200/customer/
   #     - product_api=http://product:1110/api/product/
   #     - order_api=http://order:8100/order/
-  #     - shipment_api=http://shipment:6789/shipment_service/
+  #     - shipment_api=http://shipment:6789/shipment_service
   #     - payment_api=http://payment:6800/payment_api/
   #   networks:
   #     - e_commerce
@@ -59,42 +59,42 @@ services:
   #     - customer_api=http://customer:8200/customer/
   #     - product_api=http://product:1110/api/product/
   #     - order_api=http://order:8100/order/
-  #     - shipment_api=http://shipment:6789/shipment_service/
+  #     - shipment_api=http://shipment:6789/shipment_service
   #     - payment_api=http://payment:6800/payment_api/
   #   depends_on:
   #     - cart
   #   networks:
   #     - e_commerce
 
-  # payment:
-  #   build: ./payment_service
-  #   container_name: payment_service
-  #   ports:
-  #     - "6800:6800"
-  #   environment:
-  #     - cart_api=http://cart:1111/api/cart/
-  #     - customer_api=http://customer:8200/customer/
-  #     - product_api=http://product:1110/api/product/
-  #     - order_api=http://order:8100/order/
-  #     - shipment_api=http://shipment:6789/shipment_service/
-  #     - payment_api=http://payment:6800/payment_api/
-  #   networks:
-  #     - e_commerce
+  payment:
+    build: ./payment_service
+    container_name: payment_service
+    ports:
+      - "6800:6800"
+    environment:
+      - cart_api=http://cart:1111/api/cart/
+      - customer_api=http://customer:8200/customer/
+      - product_api=http://product:1110/api/product/
+      - order_api=http://order:8100/order/
+      - shipment_api=http://shipment:6789/shipment_service
+      - payment_api=http://payment:6800/payment_api/
+    networks:
+      - e_commerce
     
-  # shipment:
-  #   build: ./shipment_service
-  #   container_name: shipment_service
-  #   ports:
-  #     - "6789:6789"
-  #   environment:
-  #     - cart_api=http://cart:1111/api/cart/
-  #     - customer_api=http://customer:8200/customer/
-  #     - product_api=http://product:1110/api/product/
-  #     - order_api=http://order:8100/order/
-  #     - shipment_api=http://shipment:6789/shipment_service/
-  #     - payment_api=http://payment:6800/payment_api/
-  #   networks:
-  #     - e_commerce
+  shipment:
+    build: ./shipment_service
+    container_name: shipment_service
+    ports:
+      - "6789:6789"
+    environment:
+      - cart_api=http://cart:1111/api/cart/
+      - customer_api=http://customer:8200/customer/
+      - product_api=http://product:1110/api/product/
+      - order_api=http://order:8100/order/
+      - shipment_api=http://shipment:6789/shipment_service
+      - payment_api=http://payment:6800/payment_api/
+    networks:
+      - e_commerce
 
   mongo:
     image: mongo:latest

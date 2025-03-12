@@ -1,0 +1,142 @@
+{
+    "info": {
+        "_postman_id": "d1f4e690-8d1e-4832-9f53-e78d76d4a261",
+        "name": "Payment Service",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "GET Payment Methods",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://127.0.0.1:6800/payment_service/payment-methods/",
+                    "path": [
+                        "payment_service",
+                        "payment-methods"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6800"
+                }
+            }
+        },
+        {
+            "name": "POST Payment Method",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://127.0.0.1:6800/payment_service/payment-methods/",
+                    "path": [
+                        "payment_service",
+                        "payment-methods"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6800"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\r\n  \"name\": \"By Bitcoin\",\r\n  \"is_active\": true\r\n}"
+                }
+            }
+        },
+        {
+            "name": "GET Payment",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://127.0.0.1:6800/payment_service/payments/",
+                    "path": [
+                        "payment_service",
+                        "payments"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6800"
+                }
+            }
+        },
+        {
+            "name": "POST Payment",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://127.0.0.1:6800/payment_service/payments/",
+                    "path": [
+                        "payment_service",
+                        "payments"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6800"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\r\n  \"customer_id\": \"customer_1412\",\r\n  \"order_id\": \"order1412\",\r\n  \"amount\": \"10000\",\r\n  \"status\": \"pending\",\r\n  \"payment_method\": \"80c16778-7144-4437-92b7-f2158ae16b11\"\r\n}"
+                }
+            }
+        },
+        {
+            "name": "Do Payment",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://127.0.0.1:6800/payment_service/do_payment/",
+                    "path": [
+                        "payment_service",
+                        "do_payment"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6800"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"order_id\": \"order1412\"\n}"
+                }
+            }
+        }
+    ]
+}

@@ -15,7 +15,7 @@ import requests
 import dotenv
 
 dotenv.load_dotenv()
-SHIPMENT_API = os.getenv('SHIPMENT_API')
+SHIPMENT_API = os.getenv('shipment_api')
 
 class PaymentMethodViewSet(viewsets.ModelViewSet):
     queryset = PaymentMethod.objects.all()
