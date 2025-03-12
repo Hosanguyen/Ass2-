@@ -3,13 +3,19 @@ from rest_framework import viewsets
 from .models import Payment, PaymentMethod
 from .serializers import (
     PaymentSerializer, 
-    PaymentMethodSerializer
+    PaymentMethodSerializer,
+    DoPaymentSerializer
 )
 from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.decorators import action
+from rest_framework.views import APIView
 import os
 import requests
+import dotenv
 
-ORDER_API = os.getenv('ORDER_API')
+dotenv.load_dotenv()
+SHIPMENT_API = os.getenv('SHIPMENT_API')
 
 class PaymentMethodViewSet(viewsets.ModelViewSet):
     queryset = PaymentMethod.objects.all()
@@ -40,3 +46,17 @@ class PaymentViewSet(viewsets.ModelViewSet):
     #     serializer = PaymentSerializer(payment)
     #     return Response(serializer.data)
 
+# create do payment only have do_payment action
+class DoPaymentViewSet(APIView):
+    def post(self, request):
+        order_id = request.data.get('order_id')
+        payment = Payment.objects.get(order_id=order_id)
+        payment.status = 'completed'
+        payment.save()
+        
+        session = requests.Session()
+        response = session.post(f'{SHIPMENT_API}/update_payment/', 
+                                json={'order_id': order_id, 'payment_status': 'completed'})
+        response.raise_for_status()
+        serializer = DoPaymentSerializer(payment)
+        return Response(serializer.data)

@@ -100,9 +100,9 @@ class Shipment(models.Model):
     payment_status = models.CharField(max_length=20, default='Chưa thanh toán')
     
     # Liên kết với các model đã tách
-    recipient = models.ForeignKey(Recipient, on_delete=models.PROTECT, related_name='shipments')
-    shipping_address = models.ForeignKey(Address, on_delete=models.PROTECT, related_name='shipments')
-    package = models.ForeignKey(Package, on_delete=models.PROTECT, related_name='shipments')
+    recipient = models.ForeignKey(Recipient, on_delete=models.PROTECT, related_name='shipments',null=True)
+    shipping_address = models.ForeignKey(Address, on_delete=models.PROTECT, related_name='shipments', null=True)
+    package = models.ForeignKey(Package, on_delete=models.PROTECT, related_name='shipments', null=True)
     
     # Thông tin giá cả
     shipping_cost = models.DecimalField(max_digits=10, decimal_places=2)

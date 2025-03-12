@@ -85,13 +85,15 @@ MONGO_URI = os.getenv("MONGO_URI", 'mongodb://localhost:27017/' )
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+HOST_DATABASE = os.getenv('MONGO_URI', 'mongodb://localhost:27017/')
+
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'project2microservice_test',
         'ENFORCE_SCHEMA': False,
         'CLIENT':{
-            'host': 'mongodb://mongo:27017/',
+            'host': 'mongodb://localhost:27017/',
         }
     }
 }
