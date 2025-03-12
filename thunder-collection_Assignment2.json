@@ -1,0 +1,142 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "Assignment2",
+    "collectionId": "5fea3f67-4c43-45a2-80e8-2aff16797783",
+    "dateExported": "2025-03-10T03:04:10.786Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "5d1c607e-7fc9-41a3-b157-4009d87f3e79",
+            "colId": "5fea3f67-4c43-45a2-80e8-2aff16797783",
+            "containerId": "",
+            "name": "add product",
+            "url": "http://127.0.0.1:1110/api/product/add/",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2025-03-03T02:57:11.940Z",
+            "modified": "2025-03-05T15:30:40.917Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"product_name\": \"product2\",\n    \"product_category\": \"book\",\n    \"availability\": \"availability\",\n    \"product_price\": 12.099,\n    \"product_description\": \"tes product no 2\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "e6a9b9f3-ce8b-4c06-b33c-1052b5f53037",
+            "colId": "5fea3f67-4c43-45a2-80e8-2aff16797783",
+            "containerId": "",
+            "name": "get product list",
+            "url": "http://127.0.0.1:1110/api/product/list/",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2025-03-03T03:00:15.392Z",
+            "modified": "2025-03-06T11:31:45.148Z",
+            "headers": []
+        },
+        {
+            "_id": "18775478-72ad-425d-b770-8c70da8fae39",
+            "colId": "5fea3f67-4c43-45a2-80e8-2aff16797783",
+            "containerId": "",
+            "name": "get one product",
+            "url": "http://127.0.0.1:1110/api/product/get/",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2025-03-03T03:00:42.192Z",
+            "modified": "2025-03-03T03:01:04.312Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"productId\": 1\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "3417dc74-1c05-4553-97ef-12bc2f3e22a9",
+            "colId": "5fea3f67-4c43-45a2-80e8-2aff16797783",
+            "containerId": "",
+            "name": "delete product",
+            "url": "http://127.0.0.1:1110/api/product/delete/",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2025-03-03T03:01:15.317Z",
+            "modified": "2025-03-05T15:30:09.556Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"productId\": 1\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "39e62202-2f61-48f1-b5c7-9d868f60ad08",
+            "colId": "5fea3f67-4c43-45a2-80e8-2aff16797783",
+            "containerId": "",
+            "name": "add cart item",
+            "url": "http://127.0.0.1:1111/api/cart/add/",
+            "method": "POST",
+            "sortNum": 65000,
+            "created": "2025-03-03T03:07:11.448Z",
+            "modified": "2025-03-10T02:06:14.680Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n        \"customerId\": 1,\n        \"productId\": 1,\n        \"quantity\": 4\n    }",
+                "form": []
+            }
+        },
+        {
+            "_id": "45d41e9e-7f30-4999-834f-fd1bb4b9b57b",
+            "colId": "5fea3f67-4c43-45a2-80e8-2aff16797783",
+            "containerId": "",
+            "name": "get cart list",
+            "url": "http://127.0.0.1:1111/api/cart/list/",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2025-03-03T03:06:38.393Z",
+            "modified": "2025-03-03T03:07:00.452Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"customerId\": 1\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "34d08554-feff-4aaf-b524-2a4b68626611",
+            "colId": "5fea3f67-4c43-45a2-80e8-2aff16797783",
+            "containerId": "",
+            "name": "delete cart item",
+            "url": "http://127.0.0.1:1111/api/cart/delete/",
+            "method": "DELETE",
+            "sortNum": 90000,
+            "created": "2025-03-03T03:12:29.089Z",
+            "modified": "2025-03-10T02:30:07.957Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n        \"customerId\": 1,\n        \"cartItemId\": 1\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "f8a83da0-59fb-4fe6-bebc-e598b16ed38f",
+            "colId": "5fea3f67-4c43-45a2-80e8-2aff16797783",
+            "containerId": "",
+            "name": "get one cart item",
+            "url": "http://127.0.0.1:1111/api/cart/get/",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2025-03-03T03:25:34.083Z",
+            "modified": "2025-03-10T02:38:07.380Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"customerId\": 1,\n  \"cartItemId\": 1\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "T1_IGUX1bJYeAHCxaGCoHT2vRUP8CmbVMA5X0tgo8VVgVXlZT8Ic9BhbOWcoM34nqux7Jh1CFmAMf9S789XxNw"
+}

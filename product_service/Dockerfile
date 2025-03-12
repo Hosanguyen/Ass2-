@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 1110 
 
 # Lệnh chạy server Django
-# CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:1110"]
+CMD ["sh", "-c", "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:1110"]
