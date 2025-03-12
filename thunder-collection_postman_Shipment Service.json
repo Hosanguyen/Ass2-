@@ -1,0 +1,384 @@
+{
+    "info": {
+        "_postman_id": "96321865-6c86-468a-b6d4-feeaee09e3c0",
+        "name": "Shipment Service",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "Get_List_Address",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://127.0.0.1:6789/shipment_service/addresses/",
+                    "path": [
+                        "shipment_service",
+                        "addresses"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6789"
+                }
+            }
+        },
+        {
+            "name": "POST_newAddress",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://127.0.0.1:6789/shipment_service/addresses/",
+                    "path": [
+                        "shipment_service",
+                        "addresses"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6789"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\r\n  \"street_address\": \"TranPhu\",\r\n  \"city\": \"PTIT\",\r\n  \"state\": \"123\",\r\n  \"country\": \"VN\",\r\n  \"postal_code\": \"123\"\r\n}"
+                }
+            }
+        },
+        {
+            "name": "GET_Address_byID",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://127.0.0.1:6789/shipment_service/addresses/94c17bee-3b25-4f95-8abe-d47f70dd9c73/",
+                    "path": [
+                        "shipment_service",
+                        "addresses",
+                        "94c17bee-3b25-4f95-8abe-d47f70dd9c73"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6789"
+                }
+            }
+        },
+        {
+            "name": "DELETE_Address_byID",
+            "request": {
+                "method": "DELETE",
+                "url": {
+                    "raw": "http://127.0.0.1:6789/shipment_service/addresses/1e082e3b-236b-46d3-ab0e-b1cccac458d8/",
+                    "path": [
+                        "shipment_service",
+                        "addresses",
+                        "1e082e3b-236b-46d3-ab0e-b1cccac458d8"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6789"
+                }
+            }
+        },
+        {
+            "name": "GET_Package",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://127.0.0.1:6789/shipment_service/packages/",
+                    "path": [
+                        "shipment_service",
+                        "packages"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6789"
+                }
+            }
+        },
+        {
+            "name": "POST_Package",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://127.0.0.1:6789/shipment_service/packages/",
+                    "path": [
+                        "shipment_service",
+                        "packages"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6789"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\r\n  \"weight\": \"1\",\r\n  \"length\": \"1\",\r\n  \"width\": \"1\",\r\n  \"height\": \"1\"\r\n}"
+                }
+            }
+        },
+        {
+            "name": "DELETE_Package_byID",
+            "request": {
+                "method": "DELETE",
+                "url": {
+                    "raw": "http://127.0.0.1:6789/shipment_service/packages/77eaffb6-bf22-4a02-820e-4bc4c02b2988/",
+                    "path": [
+                        "shipment_service",
+                        "packages",
+                        "77eaffb6-bf22-4a02-820e-4bc4c02b2988"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6789"
+                }
+            }
+        },
+        {
+            "name": "GET_Provider",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://127.0.0.1:6789/shipment_service/providers/",
+                    "path": [
+                        "shipment_service",
+                        "providers"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6789"
+                }
+            }
+        },
+        {
+            "name": "POST_Provider",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://127.0.0.1:6789/shipment_service/providers/",
+                    "path": [
+                        "shipment_service",
+                        "providers"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6789"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\r\n  \"name\": \"alolo\",\r\n  \"code\": \"alolo1234\",\r\n  \"contact_info\": \"PTIT\",\r\n  \"is_active\": true\r\n}"
+                }
+            }
+        },
+        {
+            "name": "DELETE_Provider",
+            "request": {
+                "method": "DELETE",
+                "url": {
+                    "raw": "http://127.0.0.1:6789/shipment_service/providers/c219c4dc-8ca9-4b9f-b2b2-f4ba0f5c47ce/",
+                    "path": [
+                        "shipment_service",
+                        "providers",
+                        "c219c4dc-8ca9-4b9f-b2b2-f4ba0f5c47ce"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6789"
+                }
+            }
+        },
+        {
+            "name": "GET_Rate",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://127.0.0.1:6789/shipment_service/rates/",
+                    "path": [
+                        "shipment_service",
+                        "rates"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6789"
+                }
+            }
+        },
+        {
+            "name": "POST_Rate",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://127.0.0.1:6789/shipment_service/rates/",
+                    "path": [
+                        "shipment_service",
+                        "rates"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6789"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"provider\": \"799ce17e-568e-443a-9acd-f3bab16da082\",\n  \"name\": \"rate1234\",\n  \"code\": \"rate1234\",\n  \"base_price\": \"10000\",\n  \"price_per_kg\": \"10000\",\n  \"estimated_days_min\": 1,\n  \"estimated_days_max\": 10,\n  \"is_active\": true\n}"
+                }
+            }
+        },
+        {
+            "name": "DELETE RATE",
+            "request": {
+                "method": "DELETE",
+                "url": {
+                    "raw": "http://127.0.0.1:6789/shipment_service/rates/fdb5ab1f-e430-4caa-899f-3b7a085550e6/",
+                    "path": [
+                        "shipment_service",
+                        "rates",
+                        "fdb5ab1f-e430-4caa-899f-3b7a085550e6"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6789"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"provider\": \"799ce17e-568e-443a-9acd-f3bab16da082\",\n  \"name\": \"rate1234\",\n  \"code\": \"rate1234\",\n  \"base_price\": \"10000\",\n  \"price_per_kg\": \"10000\",\n  \"estimated_days_min\": 1,\n  \"estimated_days_max\": 10,\n  \"is_active\": true\n}"
+                }
+            }
+        },
+        {
+            "name": "GET RECIPIENTS",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://127.0.0.1:6789/shipment_service/recipients/",
+                    "path": [
+                        "shipment_service",
+                        "recipients"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6789"
+                }
+            }
+        },
+        {
+            "name": "POST RECIPIENT",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://127.0.0.1:6789/shipment_service/recipients/",
+                    "path": [
+                        "shipment_service",
+                        "recipients"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6789"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"name\": \"VuKetDong2\",\n  \"phone\": \"0987654321\",\n  \"email\": \"user@example.com\"\n}"
+                }
+            }
+        }
+    ]
+}

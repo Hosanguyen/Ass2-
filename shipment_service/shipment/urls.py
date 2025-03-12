@@ -1,8 +1,9 @@
+# shipment_service/shipment/urls.py
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import (
     ShippingProviderViewSet, ShippingRateViewSet, ShipmentViewSet,
-    AddressViewSet, RecipientViewSet, PackageViewSet
+    AddressViewSet, RecipientViewSet, PackageViewSet, Update_Payment_Status
 )
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
@@ -28,6 +29,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('update_payment/', Update_Payment_Status.as_view()),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]

@@ -1,3 +1,4 @@
+# shipment_service/shipment/views.py
 import datetime
 import requests
 from django.conf import settings
@@ -6,6 +7,7 @@ from rest_framework import viewsets, status, filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.views import APIView
 from .models import (
     ShippingProvider, ShippingRate, Shipment, ShipmentEvent,
     Address, Recipient, Package
@@ -116,22 +118,23 @@ class ShipmentViewSet(viewsets.ModelViewSet):
         )
         
         # Thông báo cho order service về sự thay đổi trạng thái
-        try:
-            requests.post(
-                f"{settings.ORDER_SERVICE_URL}/orders/{shipment.order_id}/shipping-update/",
-                json={
-                    'shipment_id': str(shipment.id),
-                    'tracking_number': shipment.tracking_number,
-                    'status': new_status,
-                    'description': description,
-                    'occurred_at': occurred_at.isoformat()
-                }
-            )
-        except Exception as e:
-            # Log lỗi nhưng không làm ảnh hưởng đến response
-            print(f"Error notifying order service: {e}")
+        # try:
+        #     requests.post(
+        #         f"{settings.ORDER_SERVICE_URL}/orders/{shipment.order_id}/shipping-update/",
+        #         json={
+        #             'shipment_id': str(shipment.id),
+        #             'tracking_number': shipment.tracking_number,
+        #             'status': new_status,
+        #             'description': description,
+        #             'occurred_at': occurred_at.isoformat()
+        #         }
+        #     )
+        # except Exception as e:
+        #     # Log lỗi nhưng không làm ảnh hưởng đến response
+        #     print(f"Error notifying order service: {e}")
         
         return Response(ShipmentEventSerializer(event).data)
+    
     
     @action(detail=True, methods=['get'])
     def events(self, request, pk=None):
@@ -185,3 +188,13 @@ class ShipmentViewSet(viewsets.ModelViewSet):
             })
         
         return Response(results)
+
+class Update_Payment_Status(APIView):
+    def post(self, request):
+        order_id = request.data.get('order_id')
+        payment_status = request.data.get('payment_status')
+        shipment = Shipment.objects.get(order_id=order_id)
+        shipment.payment_status = payment_status
+        shipment.save()
+        serializer = ShipmentSerializer(shipment)
+        return Response(serializer.data)

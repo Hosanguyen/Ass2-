@@ -1,0 +1,9 @@
+dir
+cd mongodb
+cd..
+ls
+show collection
+db
+show collections
+ls
+show collections

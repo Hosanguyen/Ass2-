@@ -1,3 +1,4 @@
+#cart_service/cart/views.py
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -8,6 +9,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from dotenv import load_dotenv
 import os
 load_dotenv()
+
+product_api = os.getenv('product_api')
 
 class AddToCartAPIView(APIView):
     def post(self, request):
@@ -51,7 +54,7 @@ class CartDetailAPIView(APIView):
 
         for item in cart_items:
             try:
-                response = requests.get(f"{os.getenv('product_api_url')}product/get/", json={'productId': str(item.product)})
+                response = requests.get(f"{product_api}get/", json={'productId': str(item.product)})
                 
                 if response.status_code != 200:
                     continue  
@@ -95,7 +98,7 @@ class GetOneCartItemAPIView(APIView):
             return Response({"error": "Cart item not found"}, status=status.HTTP_404_NOT_FOUND)
         
         try:
-            response = requests.get(f"{os.getenv('product_api_url')}product/get/", json={'productId': str(cart_item.product)})
+            response = requests.get(f"{product_api}get/", json={'productId': str(cart_item.product)})
             if response.status_code != 200:
                 return Response({"error": "Failed to fetch product details"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             
@@ -115,7 +118,7 @@ class RemoveFromCartAPIView(APIView):
     def delete(self, request):
         customerId = request.data.get('customerId')
         cartItemId = request.data.get('cartItemId')
-        quantity = request.data.get('quantity')
+        quantity = request.data.get('quantity') 
         if not customerId or not cartItemId:
             return Response({"error": "customerId and cartItemId are required"}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -129,6 +132,9 @@ class RemoveFromCartAPIView(APIView):
         if not cart_item:
             return Response({"error": "Cart item not found"}, status=status.HTTP_404_NOT_FOUND)
 
+        if not quantity:
+            quantity = cart_item.quantity
+            
         cart_item.quantity -= quantity
         if(cart_item.quantity <=0):
             cart_item.delete()

@@ -1,3 +1,4 @@
+#payment_service/payment/models.py
 from django.db import models
 import uuid
 
@@ -18,7 +19,7 @@ class Payment(models.Model):
         ('refunded', 'Refunded'),
     )
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    customer_id = models.IntegerField()
+    customer_id = models.CharField(max_length=100)
     order_id = models.CharField(max_length=100, unique=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     payment_method = models.ForeignKey(PaymentMethod, on_delete=models.PROTECT)
