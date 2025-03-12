@@ -1,0 +1,98 @@
+{
+    "info": {
+        "_postman_id": "044da114-c410-423d-a4f8-05f9dce2d5a0",
+        "name": "ONLY_SHIPMENT",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "GET SHIPMENT",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://127.0.0.1:6789/shipment_service/shipments/?page=1",
+                    "query": [
+                        {
+                            "key": "page",
+                            "value": "1"
+                        }
+                    ],
+                    "variable": [],
+                    "path": [
+                        "shipment_service",
+                        "shipments"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6789"
+                }
+            }
+        },
+        {
+            "name": "GET SHIPMENT Copy",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://127.0.0.1:6789/shipment_service/shipments/",
+                    "path": [
+                        "shipment_service",
+                        "shipments"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6789"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\r\n  \"order_id\": \"order1412\",\r\n  \"tracking_number\": \"12412312\",\r\n  \"provider\": \"799ce17e-568e-443a-9acd-f3bab16da082\",\r\n  \"shipping_rate\": \"b077822d-d31d-4611-9094-39a640b06cda\",\r\n  \"status\": \"pending\",\r\n  \"recipient_data\": {\r\n    \"name\": \"dongdong\",\r\n    \"phone\": \"1234567890\",\r\n    \"email\": \"user2@example.com\"\r\n  },\r\n  \"shipping_address_data\": {\r\n    \"street_address\": \"PTIT\",\r\n    \"city\": \"PTIT\",\r\n    \"state\": \"1\",\r\n    \"country\": \"VN\",\r\n    \"postal_code\": \"10000\"\r\n  },\r\n  \"package_data\": {\r\n    \"weight\": \"1\",\r\n    \"length\": \"1\",\r\n    \"width\": \"1\",\r\n    \"height\": \"1\"\r\n  },\r\n  \"shipping_cost\": \"2000000\",\r\n  \"estimated_delivery_date\": \"2025-03-12\",\r\n  \"notes\": \"string\"\r\n}"
+                }
+            }
+        },
+        {
+            "name": "Update payment",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://127.0.0.1:6789/shipment_service/update_payment/",
+                    "path": [
+                        "shipment_service",
+                        "update_payment"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "6789"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"order_id\": \"order1412\",\n  \"payment_status\": \"completed\"\n}"
+                }
+            }
+        }
+    ]
+}
